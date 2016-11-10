@@ -137,7 +137,10 @@ class AppImageThumbnail {
 
         $this->img_file      = $file;
         $this->thumb_resize  = true;
-        $this->thumb_quality = 90;
+
+        // zoo_hack_start
+        $this->thumb_quality = 95;
+        // zoo_hack_end
 
 		// get image info
 		list($width, $height, $type, $attr) = @getimagesize($this->img_file, $info);
