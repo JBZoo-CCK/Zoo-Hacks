@@ -99,10 +99,7 @@ $this->app->document->addScript('assets:js/placeholder.js');
                                echo "*"; ?>" value="<?php echo $active_author->email; ?>"/>
                 </div>
 
-                <div class="url">
-                    <input id="comments-url" type="text" name="url" placeholder="<?php echo JText::_('Website'); ?>"
-                           value="<?php echo $active_author->url; ?>"/>
-                </div>
+
 
             <?php endif; ?>
 
