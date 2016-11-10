@@ -6,6 +6,7 @@ Performance Hacks and some hotfixes for YOOtheme ZOO Joomla! Component
  * Disable checks for `publish_up`, `publish_down` and user accesses
  * Don't create new instance on each `$app->data->create`
  * Change image quality for ZOO resizer; 95
+ * Delete Website input field from Zoo comments form
 
 # How to install
 Just unpack arch to root folder of your website. Replace files!
