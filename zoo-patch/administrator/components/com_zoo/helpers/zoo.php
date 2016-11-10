@@ -128,7 +128,17 @@ class ZooHelper extends AppHelper {
 		$width = (int) $width;
 		$height = (int) $height;
 		$file_info = pathinfo($file);
-		$thumbfile = $this->app->path->path('media:zoo').'/images/'.$file_info['filename'].'_'.md5($file.$width.$height).'.'.$file_info['extension'];
+
+        // zoo_hack_start
+        if (1) { // quick on/off
+            $path        = md5($file . $width . $height);
+            $subfolder   = substr($path, 0, 1);
+            $cacheFolder = '/cache/zoo_images/'; // cache directory
+            $thumbfile   = JPath::clean(JPATH_ROOT . "{$cacheFolder}/{$subfolder}/{$path}." . $file_info['extension']);
+        } else {
+            $thumbfile = $this->app->path->path('media:zoo') . '/images/' . $file_info['filename'] . '_' . md5($file . $width . $height) . '.' . $file_info['extension'];
+        }
+        // zoo_hack_end
 
 		// check thumbnail directory
 		if (!JFolder::exists(dirname($thumbfile))) {
@@ -136,7 +146,11 @@ class ZooHelper extends AppHelper {
 		}
 
 		// create or re-cache thumbnail
-		if ($this->app->imagethumbnail->check() && (!is_file($thumbfile) || filemtime($file) > filemtime($thumbfile))) {
+
+        // zoo_hack_start
+        if ($this->app->imagethumbnail->check() && (!is_file($thumbfile))) {
+        // zoo_hack_end
+
 			$thumbnail = $this->app->imagethumbnail->create($file);
 
 			if ($width > 0 && $height > 0) {
