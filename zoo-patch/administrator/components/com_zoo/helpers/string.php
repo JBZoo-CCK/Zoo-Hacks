@@ -69,16 +69,25 @@ class StringHelper extends AppHelper {
 	 */
 	public function sluggify($string, $force_safe = false) {
 
-		$string = $this->strtolower((string) $string);
-        $string = $this->str_ireplace(array('$',','), '', $string);
+        // zoo_hack_start
+        static $cache = array();
 
-		if ($force_safe) {
-			$string = JFilterOutput::stringURLSafe($string);
-		} else {
-			$string = JApplication::stringURLSafe($string);
-		}
+        if (!isset($cache[$string])) { // performance bug
 
-		return trim($string);
+            $string = $this->strtolower((string)$string);
+            $string = $this->str_ireplace(array('$', ','), '', $string);
+
+            if ($force_safe) {
+                $string = JFilterOutput::stringURLSafe($string);
+            } else {
+                $string = JApplication::stringURLSafe($string);
+            }
+
+            $cache[$string] = trim($string);
+        }
+
+        return $cache[$string];
+        // zoo_hack_end
 	}
 
     /**
