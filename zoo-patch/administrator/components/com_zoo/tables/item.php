@@ -165,22 +165,9 @@ class ItemTable extends AppTable {
 			Boolean.
 	*/
 	public function hit($object) {
-
-		// get database
-		$db  = $this->database;
-		$key = $this->key;
-
-		// increment hits
-		if ($object->$key) {
-			$query = "UPDATE ".$this->name
-				." SET hits = (hits + 1)"
-				." WHERE $key = ".(int) $object->$key;
-			$db->query($query);
-			$object->hits++;
-			return true;
-		}
-
-		return false;
+        // zoo_hack_start
+        return true;
+        // zoo_hack_end
 	}
 
 	/*
@@ -243,10 +230,13 @@ class ItemTable extends AppTable {
 		// set query options
 		$conditions =
 		     ($application_id !== false ? "application_id = ".(int) $application_id : "")
-			." AND ".$this->app->user->getDBAccessString($user)
-			.($published == true ? " AND state = 1"
-			." AND (publish_up = ".$null." OR publish_up <= ".$now.")"
-			." AND (publish_down = ".$null." OR publish_down >= ".$now.")": "");
+
+             // zoo_hack_start
+             //." AND ".$this->app->user->getDBAccessString($user)
+             . ($published == true ? " AND state = 1" : "");
+             //." AND (publish_up = ".$null." OR publish_up <= ".$now.")"
+             //." AND (publish_down = ".$null." OR publish_down >= ".$now.")": "")
+             // zoo_hack_end
 
 		return $this->all(array_merge(compact('conditions'), $options));
 	}
@@ -286,10 +276,14 @@ class ItemTable extends AppTable {
 			." FROM ".$this->name." AS a"
 			.($join ? $join : "")
 			." WHERE a.id IN (".implode(",", $ids).")"
-			." AND a.".$this->app->user->getDBAccessString($user)
-			.($published == true ? " AND a.state = 1"
-			." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-			." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+            // zoo_hack_start
+            // ." AND a.".$this->app->user->getDBAccessString($user)
+            .($published == true ? " AND a.state = 1" : "")
+            //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+            //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+            // zoo_hack_end
+
 			.($order ? " ORDER BY " . $order : "");
 
 		return $this->_queryObjectList($query);
@@ -337,10 +331,14 @@ class ItemTable extends AppTable {
 			." JOIN ".$this->name." AS a ON a.id = ci.item_id"
 			.($join ? $join : "")
 			." WHERE a.application_id = ".(int) $application_id
-			." AND a.".$this->app->user->getDBAccessString($user)
-			.($published == true ? " AND a.state = 1"
-			." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-			." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+            // zoo_hack_start
+            //." AND a.".$this->app->user->getDBAccessString($user)
+            .($published == true ? " AND a.state = 1" : "")
+            //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+            //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+            // zoo_hack_end
+
 			." AND BINARY LOWER(LEFT(a.name, 1)) ".(is_array($char) ? ($not_in ? "NOT" : null)." IN (".implode(",", $char).")" : " = '".$db->escape($char)."'")
 			.($order ? " ORDER BY " . $order : "")
 			.($limit ? " LIMIT ".(int) $offset.",".(int) $limit : "");
@@ -377,10 +375,14 @@ class ItemTable extends AppTable {
 				.($join ? $join : "")
 				." WHERE a.application_id = ".(int) $application_id
 				." AND b.name = '".$db->escape($tag)."'"
-				." AND a.".$this->app->user->getDBAccessString($user)
-				.($published == true ? " AND a.state = 1"
-				." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-				." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+                // zoo_hack_start
+                //." AND a.".$this->app->user->getDBAccessString($user)
+                .($published == true ? " AND a.state = 1" : "")
+                //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+                //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+                // zoo_hack_end
+
 				." GROUP BY a.id"
 				.($order ? " ORDER BY " . $order : "")
 				.($limit ? " LIMIT ".(int) $offset.",".(int) $limit : "");
@@ -416,10 +418,14 @@ class ItemTable extends AppTable {
 			.($join ? $join : "")
 			." WHERE a.type = ".$db->Quote($type_id)
 			.($application_id !== false ? " AND a.application_id = ".(int) $application_id : "")
-			." AND a.".$this->app->user->getDBAccessString($user)
-			.($published == true ? " AND a.state = 1"
-			." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-			." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+            // zoo_hack_start
+            //." AND a.".$this->app->user->getDBAccessString($user)
+            .($published == true ? " AND a.state = 1" : "")
+            //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+            //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+            // zoo_hack_end
+
 			." GROUP BY a.id"
 			.($order ? " ORDER BY " . $order : "")
 			.($limit ? " LIMIT ".(int) $offset.",".(int) $limit : "");
@@ -455,10 +461,14 @@ class ItemTable extends AppTable {
 			." LEFT JOIN ".ZOO_TABLE_CATEGORY_ITEM." AS b ON a.id = b.item_id"
 			.($join ? $join : "")
 			." WHERE a.application_id = ".(int) $application_id
-			." AND a.".$this->app->user->getDBAccessString($user)
-			.($published == true ? " AND a.state = 1"
-			." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-			." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+            // zoo_hack_start
+            // ." AND a.".$this->app->user->getDBAccessString($user)
+            .($published == true ? " AND a.state = 1" : "")
+            //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+            //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+            // zoo_hack_end
+
             ." AND b.category_id ".(is_array($category_id) ? " IN (".implode(",", $category_id).")" : " = ".(int) $category_id)
 			." GROUP BY a.id"
 			.($order ? " ORDER BY " . $order : "")
@@ -500,10 +510,14 @@ class ItemTable extends AppTable {
 						.($join ? $join : "")
 						." WHERE a.application_id = ".(int) $application_id
 						." AND b.category_id ".(is_array($category_id) ? " IN (".implode(",", $category_id).")" : " = ".(int) $category_id)
-						." AND a.".$this->app->user->getDBAccessString($user)
-						.($published == true ? " AND a.state = 1"
-						." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-						." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+                        // zoo_hack_start
+                        //." AND a.".$this->app->user->getDBAccessString($user)
+                        .($published == true ? " AND a.state = 1" : "")
+                        //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+                        //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+                        // zoo_hack_end
+
 						." GROUP BY a.id"
 						.($order ? " ORDER BY " . $order : "")
 					.") t1"
@@ -523,10 +537,14 @@ class ItemTable extends AppTable {
 							.($join ? $join : "")
 							." WHERE a.application_id = ".(int) $application_id
 							." AND b.category_id ".(is_array($category_id) ? " IN (".implode(",", $category_id).")" : " = ".(int) $category_id)
-							." AND a.".$this->app->user->getDBAccessString($user)
-							.($published == true ? " AND a.state = 1"
-							." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-							." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+                            // zoo_hack_start
+                            //." AND a.".$this->app->user->getDBAccessString($user)
+                            .($published == true ? " AND a.state = 1" : "")
+                            //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+                            //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+                            // zoo_hack_end
+
 							." GROUP BY a.id"
 							.($order ? " ORDER BY " . $order : "")
 						.") t1"
@@ -590,7 +608,9 @@ class ItemTable extends AppTable {
         $where[] = 'a.created_by = ' . (int) $user_id;
 
         // user rights
-        $where[] = 'a.'.$this->app->user->getDBAccessString($this->app->user->get((int) $user_id));
+        // zoo_hack_start
+        //$where[] = 'a.'.$this->app->user->getDBAccessString($this->app->user->get((int) $user_id));
+        // zoo_hack_end
 
 		// published
 		if ($published) {
@@ -604,8 +624,12 @@ class ItemTable extends AppTable {
 
 			// Add filters for publishing
 			$where[] = 'a.state = 1';
-			$where[] = "(a.publish_up = ".$null." OR a.publish_up <= ".$now.")";
-			$where[] = "(a.publish_down = ".$null." OR a.publish_down >= ".$now.")";
+
+            // zoo_hack_start
+            //$where[] = "(a.publish_up = ".$null." OR a.publish_up <= ".$now.")";
+            //$where[] = "(a.publish_down = ".$null." OR a.publish_down >= ".$now.")";
+            // zoo_hack_end
+
 		}
 
         // Type
@@ -663,10 +687,14 @@ class ItemTable extends AppTable {
 			." LEFT JOIN ".ZOO_TABLE_CATEGORY_ITEM." AS b ON a.id = b.item_id"
 			." WHERE a.application_id = ".(int) $application_id
 			." AND b.category_id ".(is_array($category_id) ? " IN (".implode(",", $category_id).")" : " = ".(int) $category_id)
-			." AND a.".$this->app->user->getDBAccessString($user)
-			.($published == true ? " AND a.state = 1"
-			." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
-			." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+
+            // zoo_hack_start
+            //." AND a.".$this->app->user->getDBAccessString($user)
+            .($published == true ? " AND a.state = 1" : "")
+            //." AND (a.publish_up = ".$null." OR a.publish_up <= ".$now.")"
+            //." AND (a.publish_down = ".$null." OR a.publish_down >= ".$now.")": "")
+            // zoo_hack_end
+
 			." GROUP BY a.id";
 
 		$db->query($query);
