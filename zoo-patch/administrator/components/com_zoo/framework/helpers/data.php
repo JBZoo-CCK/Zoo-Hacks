@@ -36,7 +36,15 @@ class DataHelper extends AppHelper {
 	 * @since 1.0.0
 	 */
 	public function create($data = array(), $format = 'json') {
-		
+
+
+        // zoo_hack_start
+        if ($data instanceof AppData) {
+            return $data;
+        }
+        // zoo_hack_end
+
+
 		// load data class
 		$class = $format.'Data';
 		$this->app->loader->register($class, 'data:'.strtolower($format).'.php');
