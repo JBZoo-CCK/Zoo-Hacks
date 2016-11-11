@@ -99,7 +99,10 @@ $this->app->document->addScript('assets:js/placeholder.js');
                                echo "*"; ?>" value="<?php echo $active_author->email; ?>"/>
                 </div>
 
-
+                <?php
+                // zoo_hack_start
+                // zoo_hack_end
+                ?>
 
             <?php endif; ?>
 
