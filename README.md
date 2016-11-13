@@ -1,6 +1,8 @@
 # Zoo-Hacks
 Performance Hacks and some hotfixes for YOOtheme ZOO Joomla! Component
 
+**ONLY ON YOUR OWN RISK !!!**
+
 ## ZOO Fixes
 
 #### Performance
