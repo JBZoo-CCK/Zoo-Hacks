@@ -41,20 +41,24 @@ if ($zoo->update->required() && $controller != 'update') {
 	$zoo->system->application->redirect($zoo->link(array('controller' => 'update'), false));
 }
 
-// check for ZOO extension dependencies
-$zoo->dependency->check();
+// zoo_hack_start
+if (0) {
+    // check for ZOO extension dependencies
+    $zoo->dependency->check();
 
-// cache writable ?
-if (!($cache_path = $zoo->path->path('cache:')) || !is_writable($cache_path)) {
-	$zoo->error->raiseNotice(0, sprintf("Zoo cache folder is not writable! Please check directory permissions (%s)", $cache_path));
-}
+    // cache writable ?
+    if (!($cache_path = $zoo->path->path('cache:')) || !is_writable($cache_path)) {
+        $zoo->error->raiseNotice(0, sprintf("Zoo cache folder is not writable! Please check directory permissions (%s)", $cache_path));
+    }
 
-// media folders writable ?
-foreach (array_merge(array(''), $zoo->path->dirs('media:zoo', true)) as $dir) {
-	if (!is_writable($zoo->path->path('media:zoo/'.$dir))) {
-		$zoo->error->raiseNotice(0, sprintf("Zoo media folder is not writable! Please check directory permissions (%s)", $zoo->path->path('media:zoo/'.$dir)));
-	}
+    // media folders writable ?
+    foreach (array_merge(array(''), $zoo->path->dirs('media:zoo', true)) as $dir) {
+        if (!is_writable($zoo->path->path('media:zoo/' . $dir))) {
+            $zoo->error->raiseNotice(0, sprintf("Zoo media folder is not writable! Please check directory permissions (%s)", $zoo->path->path('media:zoo/' . $dir)));
+        }
+    }
 }
+// zoo_hack_end
 
 // change application
 if ($id = $zoo->request->getInt('changeapp')) {
