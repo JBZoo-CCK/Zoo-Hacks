@@ -5,7 +5,7 @@ Performance Hacks and some hotfixes for YOOtheme ZOO Joomla! Component
 
 #### Performance
  * Disable updates hit counter ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L168))
- * Disable checks for `publish_up`, `publish_down` and user accesses
+ * Disable checks for `publish_up`, `publish_down` and user ACL
     ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L234), 
      [#2](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L280), 
      [#3](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L335), 
@@ -16,7 +16,10 @@ Performance Hacks and some hotfixes for YOOtheme ZOO Joomla! Component
      [#8](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L542), 
      [#9](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L611), 
      [#10](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L629), 
-     [#11](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L691))
+     [#11](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L691),
+     [#12](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/comment.php#L136),
+     [#13](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/tag.php#L48),
+     [#14](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/category.php#L199))
  * Disable checking fs permissions for ZOO Control Panel ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/zoo.php#L44))
  * Don't create new instance on each `$this-app->data->create()` ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/framework/helpers/data.php#L41))
  * Static cache for string sluggify ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/string.php#L72))

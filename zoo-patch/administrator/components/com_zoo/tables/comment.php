@@ -133,8 +133,10 @@ class CommentTable extends AppTable {
 		$where   = array('i.application_id = '.(int) $application->id);
 		$where[] = 'c.state = ' . Comment::STATE_APPROVED;
 		$where[] = " i.state = 1";
-		$where[] = " (i.publish_up = ".$null." OR i.publish_up <= ".$now.")";
-		$where[] = " (i.publish_down = ".$null." OR i.publish_down >= ".$now.")";
+        // zoo_hack_start
+        //$where[] = " (i.publish_up = ".$null." OR i.publish_up <= ".$now.")";
+        //$where[] = " (i.publish_down = ".$null." OR i.publish_down >= ".$now.")";
+        // zoo_hack_end
 		$where[] = is_array($categories) ? "ci.category_id IN (".implode(",", $categories).")" : "ci.category_id = " . $categories;
 
 		// build query options
