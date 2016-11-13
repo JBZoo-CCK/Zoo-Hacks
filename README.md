@@ -1,5 +1,4 @@
-# Zoo-Hacks
-Performance Hacks and some hotfixes for YOOtheme ZOO Joomla! Component
+# YOOtheme Zoo Performance Hacks for Joomla! CMS
 
 **ONLY ON YOUR OWN RISK !!!**
 
