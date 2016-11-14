@@ -64,8 +64,12 @@ $mysubmissions_link = $this->app->route->mysubmissions($this->submission);
 			<?php $type = ($this->renderer->pathExists('item/'.$item->type)) ? $item->type : 'item'; ?>
 			<div class="preview hidden <?php echo $type; ?>">
 				<?php
-					$layout  = 'item.'.($type != 'item' ? $item->type . '.' : '');
-					echo $this->renderer->render($layout.'full', array('view' => $this, 'item' => $item));
+// zoo_hack_start
+
+		//			$layout  = 'item.'.($type != 'item' ? $item->type . '.' : '');
+		//			echo $this->renderer->render($layout.'full', array('view' => $this, 'item' => $item));
+
+// zoo_hack_end
 				?>
 			</div>
 
