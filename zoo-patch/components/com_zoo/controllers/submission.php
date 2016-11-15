@@ -17,7 +17,9 @@ class SubmissionController extends AppController {
     */
 	const SESSION_PREFIX   = 'ZOO_';
     const PAGINATION_LIMIT = 20;
-	const TIME_BETWEEN_PUBLIC_SUBMISSIONS = 300;
+// zoo_hack_start
+	const TIME_BETWEEN_PUBLIC_SUBMISSIONS = 10;
+// zoo_hack_end
 	const EDIT_DATE_FORMAT = '%Y-%m-%d %H:%M:%S';
 
     /*
