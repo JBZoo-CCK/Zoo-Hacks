@@ -27,6 +27,8 @@
  * Separated thumbs paths for slow FS system ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/zoo.php#L132))
  * Don't check thumb modified date ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/zoo.php#L150))
  * Delete preview mode in my-submissions ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/components/com_zoo/partials/_mysubmissions.php#L67))
+ * Change time limit between submit submissions
+ ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/components/com_zoo/controllers/submission#L20))
 
 #### Others
  * Change image quality for ZOO resizer; 95 ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/imagethumbnail.php#L141))
