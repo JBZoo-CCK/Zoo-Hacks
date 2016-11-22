@@ -32,7 +32,8 @@
 
 #### Others
  * Change image quality for ZOO resizer; 95 ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/imagethumbnail.php#L141))
-
+ * Add new badchar '-' and replace this to space; - ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/joomla-patch/components/com_search/controller.php#L47))
+ 
 ## JBZoo Fixes
 
 #### Others
