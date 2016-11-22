@@ -43,9 +43,14 @@ class SearchController extends JControllerLegacy
 	 */
 	public function search()
 	{
+
+// zoo_hack_start
+
 		// Slashes cause errors, <> get stripped anyway later on. # causes problems.
-		$badchars = array('#', '>', '<', '\\');
-		$searchword = trim(str_replace($badchars, '', $this->input->getString('searchword', null, 'post')));
+		$badchars = array('-','#', '>', '<', '\\');
+		$searchword = trim(str_replace($badchars, ' ', $this->input->getString('searchword', null, 'post')));
+
+// zoo_hack_end
 
 		// If searchword enclosed in double quotes, strip quotes and do exact match
 		if (substr($searchword, 0, 1) == '"' && substr($searchword, -1) == '"')
