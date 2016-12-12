@@ -29,7 +29,7 @@
  * Delete preview mode in my-submissions ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/components/com_zoo/partials/_mysubmissions.php#L67))
  * Change time limit between submit submissions
  ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/components/com_zoo/controllers/submission.php#L20))
- * Update Disqus code in core Zoo ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/media/zoo/elements/disqus/disqus/tmpl/disqus.php#L21))
+ * Update Disqus code in core Zoo ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/media/zoo/elements/disqus/tmpl/disqus.php#L21))
 
 #### Others
  * Change image quality for ZOO resizer; 95 ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/imagethumbnail.php#L141))
