@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<element type="disqus" group="Web Service">
+	<name>Disqus</name>
+	<author>YOOtheme</author>
+	<creationDate>August 2011</creationDate>
+	<copyright>Copyright (C) YOOtheme GmbH</copyright>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+	<version>2.5.0</version>
+	<description>Disqus Comment System (http://www.disqus.com/)</description>
+	<params>
+		<param name="website" type="text" default="" label="Disqus Website" description="Short name of your Disqus website, Get one at: http://www.disqus.com/" />
+		<param name="developer" type="radio" default="0" label="Developer Mode" description="If you are trying to use Disqus on website that is not online or accessible">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</param>
+		<param name="default" type="radio" default="1" label="Enabled By Default" description="Enabled by default">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </param>
+	</params>
+</element>
