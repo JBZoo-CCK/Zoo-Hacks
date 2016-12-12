@@ -18,20 +18,26 @@ defined('_JEXEC') or die('Restricted access');
 <?php endif; ?>
 
 <div id="disqus_thread"></div>
-<script type="text/javascript" src="http://disqus.com/forums/<?php echo $website; ?>/embed.js"></script>
-<noscript><a href="http://<?php echo $website; ?>.disqus.com/?url=ref">View the discussion thread.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-<script type="text/javascript">
-	//<![CDATA[
-	(function() {
-			var links = document.getElementsByTagName('a');
-			var query = '?';
-			for (var i = 0; i < links.length; i++) {
-				if (links[i].href.indexOf('#disqus_thread') >= 0) {
-					query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-				}
-			}
-			document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/<?php echo $website; ?>/get_num_replies.js' + query + '"></'+'script>');
-		})();
-	//]]>
+<script id="dsq-count-scr" src="//<?php echo $website; ?>.disqus.com/count.js" async></script>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+
+    var disqus_config = function () {
+        this.page.url = "<?php echo JRoute::_($this->app->route->item($this->getItem(), false), true, 2);?>";
+        this.page.identifier = "item<?php echo $this->getItem()->id;?>";
+    };
+
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//<?php echo $website; ?>.disqus.com/embed.js';
+
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
