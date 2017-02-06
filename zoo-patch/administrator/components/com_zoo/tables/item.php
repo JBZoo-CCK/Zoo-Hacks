@@ -456,7 +456,7 @@ class ItemTable extends AppTable {
 		// get item ordering
 		list($join, $order) = $this->_getItemOrder($orderby, $ignore_order_priority);
 
-		$query = "SELECT a.*"
+		$query = "SELECT a.id"
 			." FROM ".$this->name." AS a"
 			." LEFT JOIN ".ZOO_TABLE_CATEGORY_ITEM." AS b ON a.id = b.item_id"
 			.($join ? $join : "")
@@ -474,7 +474,17 @@ class ItemTable extends AppTable {
 			.($order ? " ORDER BY " . $order : "")
 			.($limit ? " LIMIT ".(int) $offset.",".(int) $limit : "");
 
-		return $this->_queryObjectList($query);
+			$list = $this->app->database->queryAssocList($query);
+			$itemOrig = array_reduce($list, function($acc, $item){
+					$acc[] = $item['id'];
+					return $acc;
+			}, []);
+
+			$list = JBModelItem::model()->getZooItemsByIds($itemOrig);
+
+			$list = $this->app->jbarray->sortByArray($list, $itemOrig);
+
+			return $list;
 	}
 
 	/**
