@@ -30,6 +30,7 @@
  * Change time limit between submit submissions
  ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/components/com_zoo/controllers/submission.php#L20))
  * Update Disqus code in core Zoo ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/media/zoo/elements/disqus/tmpl/disqus.php#L21))
+ * Fixed sql query for Big content project (replace a.* for a.id and replace model)  [#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/tables/item.php#L459)
 
 #### Others
  * Change image quality for ZOO resizer; 95 ([#1](https://github.com/JBZoo/Zoo-Hacks/blob/master/zoo-patch/administrator/components/com_zoo/helpers/imagethumbnail.php#L141))
